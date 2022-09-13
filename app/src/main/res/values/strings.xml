@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TechStackSetup</string>
+    <string name="helloNameInput">Please enter your name</string>
 </resources>
