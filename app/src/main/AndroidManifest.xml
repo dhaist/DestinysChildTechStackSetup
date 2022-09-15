@@ -10,14 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TechStackSetup">
         <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
-        <activity
-            android:name=".Listview"
-            android:exported="false" />
+            android:name=".List"
+            android:exported="false"
+            android:label="List Of Names"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="Main Page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
