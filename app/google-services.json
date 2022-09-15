@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "630705364099",
+    "project_id": "vibedb-e195b",
+    "storage_bucket": "vibedb-e195b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630705364099:android:0a6f90cc13a5502efbcfb6",
+        "android_client_info": {
+          "package_name": "com.example.techstacksetup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630705364099-t9dd164cvalcc574a5hhofd3m9mluia8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.techstacksetup",
+            "certificate_hash": "98869a7d338cd94d5a89101f73cb4a59e37ba8a1"
+          }
+        },
+        {
+          "client_id": "630705364099-emsf24oihqp7t39i67qac24blqnk8pd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz4KtIl1ngKfBLXJiwOxBCn8-M9LJ3dTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630705364099-emsf24oihqp7t39i67qac24blqnk8pd6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
