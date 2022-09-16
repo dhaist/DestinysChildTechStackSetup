@@ -1,24 +1,21 @@
 package com.example.vibe;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.telephony.TelephonyCallback;
-import android.util.Log;
+
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.*;
 import android.content.*;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.*;
-import com.google.firebase.database.*;
+
 import com.google.firebase.firestore.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -38,6 +35,7 @@ public class SecondActivity extends AppCompatActivity {
         CollectionReference c = db.collection("users");
         nameArray = new ArrayList<>();
         textView = findViewById(R.id.textView3);
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
         returnHome.setOnClickListener(new View.OnClickListener() {
             @Override
