@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore vDB = FirebaseFirestore.getInstance();
 
+
     Button nameButton,nextbtn;
     EditText helloNameInput;
     TextView helloName;
@@ -34,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View view)
                     {
                         String name = helloNameInput.getText().toString();
+                        User newUser = new User(name);
                         helloName.setText("Hello, " + name);
-                        vDB.collection("names").add(name);
+                        vDB.collection("names").add(newUser);
 
                     }
                 });

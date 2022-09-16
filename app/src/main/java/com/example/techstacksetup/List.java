@@ -46,6 +46,6 @@ public class List extends AppCompatActivity {
         CollectionReference ref = FirebaseFirestore.getInstance().collection("names");
         ref.get();
 
-        FirebaseFirestore.getInstance().collection("names").get();
+        //FirebaseFirestore.getInstance().collection("names").get();
    }
 }
