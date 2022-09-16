@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Vibe</string>
+    <string name="homeButton">Submit</string>
+    <string name="hello">Hello World</string>
+    <string name="backButton">Home</string>
+    <string name="transition">Transition</string>
+    <string name="change">Change Me</string>
+    <string name="dummy">Can you see me</string>
+    <string name="enter_name">Enter your name</string>
+    <string name="fetch">Fetch</string>
+</resources>

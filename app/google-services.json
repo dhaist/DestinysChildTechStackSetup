@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "477281957914",
+    "project_id": "vibe-9fc9d",
+    "storage_bucket": "vibe-9fc9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477281957914:android:1b40c32bdd70988e0fb9a3",
+        "android_client_info": {
+          "package_name": "com.example.vibe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "477281957914-93kd2b21mpdao4m9nqjiisqk9o6as94j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzR7cCLvYG_oKWs5GIinKE6SDjx4Ejxuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477281957914-93kd2b21mpdao4m9nqjiisqk9o6as94j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
