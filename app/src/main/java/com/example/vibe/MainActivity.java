@@ -21,16 +21,15 @@ public class MainActivity extends AppCompatActivity {
     TextView text;
     EditText input;
     public static final String TAG = "MESSAGE";
+    //Creates a firebase instance
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //CollectionReference creates a reference to the collection we want to access
     private CollectionReference userRef = db.collection("users");
-    //private DocumentReference docRef = FirebaseFirestore.getInstance().document("sampleData");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Write a message to the database
 
 
         input = (EditText)findViewById(R.id.inputText);
@@ -38,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         text.setText("Enter Your Name");
         button = findViewById(R.id.button);
 
+        //This button sends data to the database
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         transition = (Button)findViewById(R.id.transition);
+        //This button takes you the the next page
         transition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -14,16 +14,14 @@ import com.google.android.gms.tasks.*;
 
 import com.google.firebase.firestore.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class SecondActivity extends AppCompatActivity {
 
+    //Firebase instance. This connects to the database
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //This line connects to a collection in the database called users
     private CollectionReference usersRef = db.collection("users");
-    private List<String> nameArray;
     Button returnHome;
-    ListView listview;
     TextView textView;
 
 
@@ -32,11 +30,10 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         returnHome = (Button)findViewById(R.id.returnToMain);
-        CollectionReference c = db.collection("users");
-        nameArray = new ArrayList<>();
         textView = findViewById(R.id.textView3);
         textView.setMovementMethod(new ScrollingMovementMethod());
 
+        //This code takes you to the home page when back button is clicked
         returnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,18 +44,25 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 
+    //This method loads the names from the database and displays them
+    //This method is invoked when the user clicks on the fetch button
     public void loadName(View v){
-        usersRef.get()
+        usersRef.get() //get method grabs all the information from the collection users
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
+                    //onSuccess method makes sure get method works
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         String data = "";
+                        //For loop which goes through every piece of data in the collection
                         for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            //Creates a new user. Sends info User.class
                             User user = documentSnapshot.toObject(User.class);
+                            //set a variable for the name of the user using getName from the user class
                             String name = user.getName();
+                            //Data is a large string with a new line after every entry
                             data += "Name: " + name + "\n";
-                            nameArray.add(data);
                         }
+                        //Displays the data to the screen
                         textView.setText(data);
                     }
                 });
