@@ -9,7 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class MainActivity extends AppCompatActivity {
+
+    FirebaseFirestore vDB = FirebaseFirestore.getInstance();
+
     Button nameButton,nextbtn;
     EditText helloNameInput;
     TextView helloName;
@@ -28,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
-                        helloName.setText("Hello, " + helloNameInput.getText());
+                        String name = helloNameInput.getText().toString();
+                        helloName.setText("Hello, " + name);
+                        vDB.collection("names").add(name);
+
                     }
                 });
 

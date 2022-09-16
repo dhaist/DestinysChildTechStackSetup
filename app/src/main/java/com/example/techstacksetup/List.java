@@ -9,6 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class List extends AppCompatActivity {
     ListView listName;
     Button returnToMainButton;
@@ -38,5 +42,10 @@ public class List extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        CollectionReference ref = FirebaseFirestore.getInstance().collection("names");
+        ref.get();
+
+        FirebaseFirestore.getInstance().collection("names").get();
    }
 }
