@@ -4,30 +4,42 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 public class List extends AppCompatActivity {
-    ListView listName;
     Button returnToMainButton;
+    //Firebase instance. This connects to the database
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //connects to a collection in the database called users
+    private CollectionReference usersRef = db.collection("names");
+    private ArrayList<String> nameArray;
+    TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        listName=(ListView)findViewById(R.id.listName);
 
-        //array of names for testing
-        String[] name = {"Moe","Kaid","Smith"};
+        CollectionReference c = db.collection("names");
+        nameArray = new ArrayList<>();
+        textView = findViewById(R.id.textView3);
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
-        //adapter to connecet the string array
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, name);
-
-        //setting the listView to the adapter
-        listName.setAdapter(arrayAdapter);
 
         // button that returns to main activity
         returnToMainButton = (Button)findViewById(R.id.returnToMain);
@@ -38,5 +50,32 @@ public class List extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
    }
+    //loads the names from the database and displays them
+    //invoked when the user clicks on the fetch button
+    public void loadName(View v){
+        usersRef.get()//get method grabs all the information from the collection users
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    //onSuccess method makes sure get method works
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        String data = "";
+                        //For loop which goes through every piece of data in the collection
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                            //Creates a new user. Sends info User.class
+                            User user = documentSnapshot.toObject(User.class);
+                            //set a variable for the name of the user using getName from the user class
+                            String name = user.getName();
+                            //Data is a large string with a new line after every entry
+                            data += "Name: " + name + "\n";
+                            nameArray.add(data);
+                        }
+                        //Displays the data to the screen
+                        textView.setText(data);
+                    }
+                });
+    }
 }
