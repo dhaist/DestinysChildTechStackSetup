@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         nextbtn = (Button)findViewById(R.id.nextBtn);
         helloNameInput  = (EditText)findViewById(R.id.editTextTextPersonName);
         helloName = (TextView)findViewById(R.id.helloName);
+        final long[] mLastClickTime = {0};
 
 
         nameButton.setOnClickListener(
@@ -39,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
                 {
                     public void onClick(View view)
                     {
+                        if (SystemClock.elapsedRealtime() - mLastClickTime[0] < 10000){
+                            helloName.setText("Button cool down. Please do not spam the save button.");
+                            return;
+                        }
+                        mLastClickTime[0] = SystemClock.elapsedRealtime();
                         String name = helloNameInput.getText().toString();
                         User newUser = new User(name);
                         helloName.setText("Hello, " + name);
