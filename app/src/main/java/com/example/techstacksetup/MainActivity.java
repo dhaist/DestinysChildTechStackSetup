@@ -50,31 +50,30 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener()
                 {
                     public void onClick(View view) {
-                        if (!helloNameInput.getText().toString().isEmpty()) {
-                            label.setText("");
-                            if (SystemClock.elapsedRealtime() - mLastClickTime[0] < 10000) {
-                                helloName.setText("Button cool down. Please do not spam the save button.");
-                                return;
-                            }
-                            mLastClickTime[0] = SystemClock.elapsedRealtime();
-                            String name = helloNameInput.getText().toString();
-                            User newUser = new User(name);
-                            helloName.setText("Hello, " + name);
-                            //sends data to the database
-                            vDB.collection("names").add(newUser);
-
-                            try {
-                                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                            } catch (Exception e) {
-                                // TODO: handle exception
-                            }
-                        }
                         if(helloNameInput.getText().toString().isEmpty()){
                             label.setTextColor(Color.RED);
                             label.setText("Can't Leave it Blank");
+                            return;
                         }
+                        label.setText("");
+                        if (SystemClock.elapsedRealtime() - mLastClickTime[0] < 10000) {
+                            helloName.setText("Button cool down. Please do not spam the save button.");
+                            return;
+                        }
+                        mLastClickTime[0] = SystemClock.elapsedRealtime();
+                            String name = helloNameInput.getText().toString();
+                            User newUser = new User(name);
+                        helloName.setText("Hello, " + name);
 
+                        //sends data to the database
+                        vDB.collection("names").add(newUser);
+
+                        try {
+                            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
                     }
                 });
 
