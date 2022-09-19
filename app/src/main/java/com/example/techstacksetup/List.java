@@ -3,6 +3,7 @@ package com.example.techstacksetup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -27,7 +28,7 @@ public class List extends AppCompatActivity {
     //connects to a collection in the database called users
     private CollectionReference usersRef = db.collection("names");
     private ArrayList<String> nameArray;
-    TextView textView;
+    ListView view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,8 @@ public class List extends AppCompatActivity {
 
         CollectionReference c = db.collection("names");
         nameArray = new ArrayList<>();
-        textView = findViewById(R.id.textView3);
-        textView.setMovementMethod(new ScrollingMovementMethod());
+        view = (ListView)findViewById(R.id.list);
+        view.setBackgroundColor(Color.WHITE);
 
 
         // button that returns to main activity
@@ -71,10 +72,13 @@ public class List extends AppCompatActivity {
                             String name = user.getName();
                             //Data is a large string with a new line after every entry
                             data += "Name: " + name + "\n";
-                            nameArray.add(data);
+                            nameArray.add(name);
                         }
                         //Displays the data to the screen
-                        textView.setText(data);
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(),
+                                android.R.layout.simple_list_item_1, nameArray);
+
+                        view.setAdapter(arrayAdapter);
                     }
                 });
     }
